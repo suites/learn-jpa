@@ -22,12 +22,17 @@ fun main() {
 }
 
 private fun logic(em: EntityManager) {
-    val member = Member(id = "user2", username = "지한", age = 2)
+    val member = Member(id = "user3", username = "지한", age = 2)
 
     em.persist(member)
     member.age = 20
 
     val findMember = em.find(Member::class.java, member.id)
     println("""findMember=${findMember.username} age=${findMember.age}""")
-}
 
+    val members =
+        em.createQuery("select m from Member m", Member::class.java).resultList
+    println("""members.size= ${members.size}""")
+
+    em.remove(member)
+}
