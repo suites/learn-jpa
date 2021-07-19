@@ -15,7 +15,7 @@ repositories {
 dependencies {
     testImplementation(kotlin("test"))
     implementation("org.hibernate:hibernate-entitymanager:5.5.3.Final")
-    implementation("com.h2database:h2:1.4.187")
+    implementation("mysql:mysql-connector-java:8.0.21")
     implementation(kotlin("stdlib-jdk8"))
 }
 
@@ -29,9 +29,9 @@ tasks.withType<KotlinCompile>() {
 
 val compileKotlin: KotlinCompile by tasks
 compileKotlin.kotlinOptions {
-    jvmTarget = "1.8"
+    jvmTarget = "11"
 }
 val compileTestKotlin: KotlinCompile by tasks
 compileTestKotlin.kotlinOptions {
-    jvmTarget = "1.8"
+    jvmTarget = "11"
 }
