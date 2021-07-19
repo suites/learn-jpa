@@ -22,7 +22,7 @@ fun main() {
 }
 
 private fun logic(em: EntityManager) {
-    val member = Member(id = "user3", username = "지한", age = 2)
+    val member = Member(username = "지한", age = 2)
 
     em.persist(member)
     member.age = 20

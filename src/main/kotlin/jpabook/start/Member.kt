@@ -1,18 +1,32 @@
 package jpabook.start
 
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.Id
-import javax.persistence.Table
+import java.time.OffsetDateTime
+import javax.persistence.*
 
 @Entity
-@Table(name = "MEMBERS")
+@Table(name = "members")
 data class Member(
-    @Id
-    @Column
-    var id: String? = null,
-    @Column(name = "NAME")
+    @Column(name = "name")
     var username: String = "",
-    var age: Int? = null
-)
 
+    var age: Int? = null,
+
+    @Enumerated(EnumType.STRING)
+    var roleType: RoleType = RoleType.USER,
+
+    @Lob
+    var description: String? = ""
+) {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Long? = null
+
+    var createdDate: OffsetDateTime = OffsetDateTime.now()
+
+    var lastModifiedDate: OffsetDateTime = OffsetDateTime.now()
+}
+
+enum class RoleType {
+    ADMIN,
+    USER
+}
